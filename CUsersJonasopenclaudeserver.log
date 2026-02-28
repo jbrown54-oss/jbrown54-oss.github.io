@@ -1,0 +1,13 @@
+
+> jbrown54-portfolio@1.0.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 1249ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1654ms (509 modules)
+ GET / 200 in 1776ms
+ GET / 200 in 78ms
