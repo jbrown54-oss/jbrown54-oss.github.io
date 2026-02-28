@@ -54,6 +54,7 @@ export default function Home() {
           <div className="flex gap-8">
             <Link href="/" className="text-sm text-[#a0aab8] hover:text-[#00d9ff] transition-colors">Work</Link>
             <Link href="/blog" className="text-sm text-[#a0aab8] hover:text-[#00d9ff] transition-colors">Blog</Link>
+            <Link href="/debt-tracker" className="text-sm text-[#a0aab8] hover:text-[#00d9ff] transition-colors">Debt Tracker</Link>
             <Link href="#contact" className="text-sm text-[#a0aab8] hover:text-[#00d9ff] transition-colors">Contact</Link>
           </div>
         </div>
