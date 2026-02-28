@@ -30,7 +30,7 @@ export default function SocialLinks() {
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="group px-4 py-2 rounded-lg border border-[#24323f] text-[#a0aab8] hover:border-[#00d9ff] hover:text-[#00d9ff] hover:bg-[#1a2332] transition-all duration-300 flex items-center gap-2"
+          className="group px-4 py-2 rounded-lg border border-[#27323f] text-[#b0b8c8] hover:border-[#a78bfa] hover:text-[#a78bfa] hover:bg-[#1d2635] transition-all duration-300 flex items-center gap-2"
         >
           <span className="text-lg">{link.icon}</span>
           <span className="text-sm font-medium">{link.label}</span>

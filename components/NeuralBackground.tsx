@@ -48,7 +48,7 @@ export default function NeuralBackground() {
       }
 
       // Clear canvas with dark background
-      ctx.fillStyle = '#0f1419'
+      ctx.fillStyle = '#08090f'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       // Update nodes
@@ -62,7 +62,7 @@ export default function NeuralBackground() {
         const dist = Math.sqrt(dx * dx + dy * dy)
         const opacity = getNodeOpacity(dist, 150)
 
-        ctx.strokeStyle = `rgba(0, 217, 255, ${opacity * 0.4})`
+        ctx.strokeStyle = `rgba(167, 139, 250, ${opacity * 0.3})`
         ctx.lineWidth = 1.5
         ctx.beginPath()
         ctx.moveTo(node1.x, node1.y)
@@ -81,14 +81,14 @@ export default function NeuralBackground() {
         const cursorInfluence = Math.max(0, 1 - cursorDist / 200)
         const opacity = baseOpacity + cursorInfluence * 0.4
 
-        ctx.fillStyle = `rgba(0, 217, 255, ${opacity})`
+        ctx.fillStyle = `rgba(167, 139, 250, ${opacity})`
         ctx.beginPath()
         ctx.arc(node.x, node.y, 2.5, 0, Math.PI * 2)
         ctx.fill()
 
         // Draw connections from cursor to nearby nodes
         if (cursorInfluence > 0) {
-          ctx.strokeStyle = `rgba(190, 242, 100, ${cursorInfluence * 0.3})`
+          ctx.strokeStyle = `rgba(139, 92, 246, ${cursorInfluence * 0.3})`
           ctx.lineWidth = 1.5
           ctx.beginPath()
           ctx.moveTo(cursorPos.x, cursorPos.y)
