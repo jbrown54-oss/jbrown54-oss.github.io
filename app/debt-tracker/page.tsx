@@ -6,19 +6,23 @@ export const metadata = {
   description: 'Track your study abroad debt payoff progress',
 }
 
+import ThemeToggle from '@/components/ThemeToggle'
+
 export default function DebtTrackerPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0e13] via-[#0f1419] to-[#14192a] text-[#f0f4f8]">
+    <div className="min-h-screen bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-[#0a0e13]/80 backdrop-blur-md border-b border-[#1a2332]/40">
+      <nav className="sticky top-0 z-50 bg-[var(--color-bg-primary)]/95 backdrop-blur-md border-b border-[var(--color-bg-tertiary)]">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="font-bold text-xl text-[#f0f4f8] hover:text-[#00d9ff] transition-colors">
+          <Link href="/" className="font-bold text-xl text-[var(--color-text-primary)] hover:text-[var(--color-accent-cyan)] transition-colors">
             JB
           </Link>
-          <div className="flex gap-8">
-            <Link href="/" className="text-sm text-[#a0aab8] hover:text-[#00d9ff] transition-colors">Work</Link>
-            <Link href="/blog" className="text-sm text-[#a0aab8] hover:text-[#00d9ff] transition-colors">Blog</Link>
-            <Link href="#contact" className="text-sm text-[#a0aab8] hover:text-[#00d9ff] transition-colors">Contact</Link>
+          <div className="flex gap-8 items-center">
+            <Link href="/" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors">Work</Link>
+            <Link href="/blog" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors">Blog</Link>
+            <Link href="#contact" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors">Contact</Link>
+            <div className="border-l border-[var(--color-bg-tertiary)] h-6 mx-2" />
+            <ThemeToggle />
           </div>
         </div>
       </nav>
