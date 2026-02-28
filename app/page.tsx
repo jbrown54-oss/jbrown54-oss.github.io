@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import SocialLinks from '@/components/SocialLinks'
 import ThemeToggle from '@/components/ThemeToggle'
@@ -9,14 +11,12 @@ export default function Home() {
       description: 'Neural network visualization with cursor-reactive canvas. Built with Next.js, TypeScript, and Canvas API. Deployed on GitHub Pages with CI/CD automation.',
       tags: ['Next.js', 'TypeScript', 'Canvas', 'React'],
       link: 'https://github.com/jbrown54-oss/jbrown54-oss.github.io',
-      icon: '→',
     },
     {
       title: 'Resume Builder',
       description: 'AI-powered resume optimization leveraging Claude API to generate tailored bullets. Automates job application workflows with intelligent bullet point synthesis.',
       tags: ['Claude API', 'Python', 'Data Processing'],
       link: '#',
-      icon: '→',
     },
   ]
 
@@ -26,135 +26,158 @@ export default function Home() {
       description: 'Cerebral organoid research investigating GBM and meningioma oncology. Single-cell transcriptomics analysis and precision oncology approaches.',
       tags: ['scRNA-seq', 'Organoids', 'Oncology'],
       link: '#',
-      icon: '→',
     },
     {
       title: 'Multiomics Analysis',
       description: 'Integration of spatial biology with transcriptomics data. Custom analysis pipelines for complex multi-modal datasets with advanced visualization.',
       tags: ['Spatial Bio', 'Data Integration', 'Analysis'],
       link: '#',
-      icon: '→',
     },
   ]
 
-  const tools = [
-    { category: 'Languages', items: ['Python', 'R', 'TypeScript', 'Bash', 'SQL'], colorVar: 'var(--color-accent-cyan)' },
-    { category: 'ML/AI', items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Claude API'], colorVar: 'var(--color-accent-cyan)' },
-    { category: 'Data', items: ['Pandas', 'Seurat', 'Plotly', 'D3.js'], colorVar: 'var(--color-accent-purple)' },
-    { category: 'Lab', items: ['Fiji', 'NEURON', 'Jupyter', 'Nextflow'], colorVar: 'var(--color-accent-lime)' },
+  const skills = [
+    { category: 'Languages', items: ['Python', 'R', 'TypeScript', 'Bash', 'SQL'] },
+    { category: 'ML/AI', items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Claude API'] },
+    { category: 'Data', items: ['Pandas', 'Seurat', 'Plotly', 'D3.js'] },
+    { category: 'Lab', items: ['Fiji', 'NEURON', 'Jupyter', 'Nextflow'] },
   ]
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-[var(--color-bg-primary)]/95 backdrop-blur-md border-b border-[var(--color-bg-tertiary)]">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="font-bold text-xl text-[var(--color-text-primary)] hover:text-[var(--color-accent-cyan)] transition-colors">
+      <nav style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        borderBottom: '1px solid var(--bg-tertiary)',
+        backdropFilter: 'blur(10px)',
+      }}>
+        <style>{`
+          [data-theme="dark"] nav {
+            background-color: rgba(26, 20, 16, 0.95);
+          }
+          nav a:hover {
+            color: var(--accent-main);
+          }
+        `}</style>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 1.5rem' }}>
+          <Link href="/" style={{
+            fontWeight: 'bold',
+            fontSize: '1.25rem',
+            color: 'var(--text-primary)',
+            textDecoration: 'none',
+            transition: 'color 0.2s ease',
+          }}>
             JB
           </Link>
-          <div className="flex gap-8 items-center">
-            <Link href="/" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors">Work</Link>
-            <Link href="/blog" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors">Blog</Link>
-            <Link href="/debt-tracker" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors">Debt Tracker</Link>
-            <Link href="#contact" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors">Contact</Link>
-            <div className="border-l border-[var(--color-bg-tertiary)] h-6 mx-2" />
+          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+            <Link href="/" style={{
+              fontSize: '0.875rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+            }}>
+              Work
+            </Link>
+            <Link href="/blog" style={{
+              fontSize: '0.875rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+            }}>
+              Blog
+            </Link>
+            <Link href="/debt-tracker" style={{
+              fontSize: '0.875rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+            }}>
+              Debt Tracker
+            </Link>
+            <Link href="#contact" style={{
+              fontSize: '0.875rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+            }}>
+              Contact
+            </Link>
+            <div style={{ borderLeft: '1px solid var(--bg-tertiary)', height: '1.5rem', margin: '0 0.5rem' }} />
             <ThemeToggle />
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="px-6 pt-48 pb-32 md:pt-56 md:pb-40 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-[var(--color-accent-cyan)]/10 to-transparent rounded-full blur-3xl -z-10" />
-
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 mb-10 px-4 py-2 rounded-full bg-[var(--color-accent-cyan)]/10 border border-[var(--color-accent-cyan)]/30 hover:border-[var(--color-accent-cyan)]/50 transition-all">
-            <span className="w-2 h-2 bg-[var(--color-accent-cyan)] rounded-full animate-pulse" />
-            <span className="text-xs font-semibold text-[var(--color-accent-cyan)] tracking-widest uppercase">Neuroscientist & Engineer</span>
-          </div>
-
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight text-[var(--color-text-primary)]">
+      <section style={{ padding: '6rem 1.5rem', borderTop: '1px solid var(--bg-tertiary)' }} className="text-center">
+        <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <h1 style={{ fontSize: '3.5rem', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: '2rem' }}>
             Jonas Brown
           </h1>
 
-          <p className="text-2xl md:text-3xl font-light text-[var(--color-text-secondary)] mb-6 leading-relaxed mx-auto">
-            Building the intersection of <span className="text-[var(--color-accent-cyan)] font-medium">wet lab</span> and <span className="text-[var(--color-accent-purple)] font-medium">computation</span>
-          </p>
+          <h2 style={{ fontSize: '1.875rem', fontWeight: 700, lineHeight: 1.2, color: 'var(--text-secondary)', marginBottom: '2rem' }}>
+            Building the intersection of wet lab and computation
+          </h2>
 
-          <p className="text-base md:text-lg text-[var(--color-text-secondary)] leading-relaxed mb-10 font-light mx-auto max-w-2xl">
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.7, marginBottom: '2rem' }}>
             Computational neuroscience student at University of Washington. Combining experimental rigor with machine learning to understand brain dynamics, design better experiments, and accelerate discovery.
           </p>
 
-          <div className="mb-16 flex justify-center">
+          <div style={{ marginBottom: '2rem' }}>
             <SocialLinks />
           </div>
 
-          <div className="flex flex-wrap gap-4 mb-16 justify-center">
-            <a href="#work" className="px-8 py-3 rounded-lg bg-[var(--color-accent-cyan)] text-[var(--color-bg-primary)] font-semibold hover:bg-[var(--color-accent-cyan-dark)] transition-all hover:shadow-lg hover:translate-y-[-2px]">
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '2rem' }}>
+            <a href="#work" className="btn btn-primary" style={{ backgroundColor: 'var(--accent-main)', color: 'var(--bg-primary)' }}>
               View My Work
             </a>
-            <a href="#contact" className="px-8 py-3 rounded-lg border border-[var(--color-accent-cyan)] text-[var(--color-accent-cyan)] font-semibold hover:bg-[var(--color-accent-cyan)]/10 transition-all">
+            <a href="#contact" className="btn btn-secondary" style={{ borderColor: 'var(--accent-main)', color: 'var(--accent-main)' }}>
               Get In Touch
             </a>
-          </div>
-
-          <div className="flex justify-center pt-8 border-t border-[var(--color-bg-tertiary)]">
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-xs text-[var(--color-text-secondary)] tracking-widest uppercase font-medium">Scroll to explore</span>
-              <svg className="w-5 h-5 text-[var(--color-accent-cyan)] animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="work" className="px-6 py-48 border-t border-[var(--color-bg-tertiary)] relative">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-24 text-center">
-            <div className="inline-block mb-4">
-              <span className="text-xs font-bold text-[var(--color-accent-cyan)] tracking-widest uppercase">Featured Work</span>
-            </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-[var(--color-text-primary)]">Recent Projects</h2>
-            <p className="text-lg text-[var(--color-text-secondary)] mx-auto max-w-2xl">Computational and experimental work bridging science and software engineering</p>
+      <section id="work" style={{ padding: '6rem 1.5rem', borderTop: '1px solid var(--bg-tertiary)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h3 style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--accent-main)', marginBottom: '1rem' }}>
+              My Work
+            </h3>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 700 }}>
+              Projects
+            </h2>
           </div>
 
           {/* Computational Projects */}
-          <div className="mb-32">
-            <div className="mb-12 pb-6 border-b border-[var(--color-bg-tertiary)] text-center">
-              <h3 className="text-sm font-bold text-[var(--color-accent-cyan)] tracking-widest uppercase">Computational</h3>
-              <p className="text-[var(--color-text-secondary)] text-sm mt-2">Software & Data Systems</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {computationalProjects.map((project, idx) => (
-                <a
-                  key={idx}
-                  href={project.link}
-                  className="group relative overflow-hidden rounded-2xl bg-[var(--color-bg-secondary)] border border-[var(--color-bg-tertiary)] hover:border-[var(--color-accent-cyan)]/50 transition-all duration-300 hover:shadow-lg p-8 hover:translate-y-[-4px]"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-accent-cyan)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
-
-                  <div className="relative z-10">
-                    <div className="flex items-start justify-between mb-4">
-                      <h4 className="text-2xl font-bold text-[var(--color-text-primary)] group-hover:text-[var(--color-accent-cyan)] transition-colors leading-tight max-w-[80%]">
-                        {project.title}
-                      </h4>
-                      <span className="text-2xl text-[var(--color-accent-cyan)] opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-2">
-                        {project.icon}
+          <div style={{ marginBottom: '4rem' }}>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '2rem', color: 'var(--text-primary)' }}>
+              Computational
+            </h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+              {computationalProjects.map((project) => (
+                <a key={project.title} href={project.link} className="card" style={{ textDecoration: 'none' }}>
+                  <h4 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem', color: 'var(--text-primary)' }}>
+                    {project.title}
+                  </h4>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: 1.7 }}>
+                    {project.description}
+                  </p>
+                  <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    {project.tags.map((tag) => (
+                      <span key={tag} style={{
+                        fontSize: '0.875rem',
+                        padding: '0.25rem 0.75rem',
+                        backgroundColor: 'var(--bg-tertiary)',
+                        borderRadius: '0.25rem',
+                        color: 'var(--text-secondary)'
+                      }}>
+                        {tag}
                       </span>
-                    </div>
-                    <p className="text-[var(--color-text-secondary)] mb-8 text-base leading-relaxed">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag, i) => (
-                        <span key={i} className="text-xs px-3 py-1.5 rounded-lg bg-[var(--color-accent-cyan)]/10 text-[var(--color-accent-cyan)] border border-[var(--color-accent-cyan)]/30 font-medium group-hover:bg-[var(--color-accent-cyan)]/20 transition-colors">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                    ))}
                   </div>
                 </a>
               ))}
@@ -163,39 +186,30 @@ export default function Home() {
 
           {/* Wet Lab Projects */}
           <div>
-            <div className="mb-12 pb-6 border-b border-[var(--color-bg-tertiary)] text-center">
-              <h3 className="text-sm font-bold text-[var(--color-accent-lime)] tracking-widest uppercase">Wet Lab</h3>
-              <p className="text-[var(--color-text-secondary)] text-sm mt-2">Experimental & Research</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {wetLabProjects.map((project, idx) => (
-                <a
-                  key={idx}
-                  href={project.link}
-                  className="group relative overflow-hidden rounded-2xl bg-[var(--color-bg-secondary)] border border-[var(--color-bg-tertiary)] hover:border-[var(--color-accent-lime)]/50 transition-all duration-300 hover:shadow-lg p-8 hover:translate-y-[-4px]"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-accent-lime)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
-
-                  <div className="relative z-10">
-                    <div className="flex items-start justify-between mb-4">
-                      <h4 className="text-2xl font-bold text-[var(--color-text-primary)] group-hover:text-[var(--color-accent-lime)] transition-colors leading-tight max-w-[80%]">
-                        {project.title}
-                      </h4>
-                      <span className="text-2xl text-[var(--color-accent-lime)] opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-2">
-                        {project.icon}
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '2rem', color: 'var(--text-primary)' }}>
+              Wet Lab
+            </h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+              {wetLabProjects.map((project) => (
+                <a key={project.title} href={project.link} className="card" style={{ textDecoration: 'none' }}>
+                  <h4 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem', color: 'var(--text-primary)' }}>
+                    {project.title}
+                  </h4>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: 1.7 }}>
+                    {project.description}
+                  </p>
+                  <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    {project.tags.map((tag) => (
+                      <span key={tag} style={{
+                        fontSize: '0.875rem',
+                        padding: '0.25rem 0.75rem',
+                        backgroundColor: 'var(--bg-tertiary)',
+                        borderRadius: '0.25rem',
+                        color: 'var(--text-secondary)'
+                      }}>
+                        {tag}
                       </span>
-                    </div>
-                    <p className="text-[var(--color-text-secondary)] mb-8 text-base leading-relaxed">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag, i) => (
-                        <span key={i} className="text-xs px-3 py-1.5 rounded-lg bg-[var(--color-accent-lime)]/10 text-[var(--color-accent-lime)] border border-[var(--color-accent-lime)]/30 font-medium group-hover:bg-[var(--color-accent-lime)]/20 transition-colors">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                    ))}
                   </div>
                 </a>
               ))}
@@ -205,36 +219,30 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section className="px-6 py-48 border-t border-[var(--color-bg-tertiary)]">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-24 text-center">
-            <div className="inline-block mb-4">
-              <span className="text-xs font-bold text-[var(--color-accent-cyan)] tracking-widest uppercase">Technical Stack</span>
-            </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-[var(--color-text-primary)]">Skills & Tools</h2>
-            <p className="text-lg text-[var(--color-text-secondary)] mx-auto max-w-2xl">Languages, frameworks, and tools I use to build things</p>
+      <section style={{ padding: '6rem 1.5rem', borderTop: '1px solid var(--bg-tertiary)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h3 style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--accent-main)', marginBottom: '1rem' }}>
+              Skills
+            </h3>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 700 }}>
+              Tools & Technologies
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {tools.map((toolGroup, idx) => (
-              <div
-                key={idx}
-                className="group p-8 rounded-2xl bg-[var(--color-bg-secondary)] border border-[var(--color-bg-tertiary)] transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px] hover:border-current"
-                style={{ '--hover-color': toolGroup.colorVar } as React.CSSProperties}
-              >
-                <h4
-                  className="text-xs font-bold tracking-widest uppercase mb-6 transition-colors"
-                  style={{ color: toolGroup.colorVar }}
-                >
-                  {toolGroup.category}
-                </h4>
-                <ul className="space-y-3">
-                  {toolGroup.items.map((item, i) => (
-                    <li key={i} className="text-[var(--color-text-secondary)] text-sm font-medium group-hover:text-[var(--color-text-primary)] transition-colors">
-                      {item}
-                    </li>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
+            {skills.map((skillGroup) => (
+              <div key={skillGroup.category} className="card">
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1.5rem', color: 'var(--accent-main)' }}>
+                  {skillGroup.category}
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {skillGroup.items.map((item) => (
+                    <span key={item} style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>
+                      • {item}
+                    </span>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </div>
@@ -242,61 +250,67 @@ export default function Home() {
       </section>
 
       {/* Blog Section */}
-      <section className="px-6 py-48 border-t border-[var(--color-bg-tertiary)]">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-16 text-center">
-            <div className="inline-block mb-4">
-              <span className="text-xs font-bold text-[var(--color-accent-purple)] tracking-widest uppercase">Writing</span>
-            </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-[var(--color-text-primary)]">Latest Thoughts</h2>
-            <p className="text-lg text-[var(--color-text-secondary)] mb-8">Reflections on research, learning, and building</p>
-            <Link href="/blog/" className="inline-block text-[var(--color-accent-cyan)] hover:text-[var(--color-accent-cyan-dark)] transition-colors font-semibold text-sm px-4 py-2 rounded-lg border border-[var(--color-accent-cyan)]/30 hover:border-[var(--color-accent-cyan)] hover:bg-[var(--color-accent-cyan)]/5">
-              View all →
+      <section style={{ padding: '6rem 1.5rem', borderTop: '1px solid var(--bg-tertiary)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h3 style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--accent-main)', marginBottom: '1rem' }}>
+              Blog
+            </h3>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 700 }}>
+              Latest Thoughts
+            </h2>
+          </div>
+
+          <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+            <Link href="/blog/welcome" className="card" style={{ textDecoration: 'none', display: 'block' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem', color: 'var(--text-primary)' }}>
+                Welcome to My Blog
+              </h3>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: 1.7 }}>
+                Thoughts on neuroscience, computation, and building at the intersection of wet lab and code.
+              </p>
+              <p style={{ color: 'var(--accent-main)', fontSize: '0.875rem', fontWeight: 600 }}>
+                Read More →
+              </p>
             </Link>
           </div>
 
-          <a href="/blog/welcome" className="group block relative overflow-hidden rounded-2xl bg-[var(--color-bg-secondary)] border border-[var(--color-bg-tertiary)] hover:border-[var(--color-accent-purple)]/50 transition-all duration-300 hover:shadow-lg p-8 md:p-10 hover:translate-y-[-4px] max-w-2xl mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-accent-purple)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
-
-            <div className="flex items-start justify-between mb-6">
-              <div className="flex-1">
-                <h3 className="text-3xl font-bold text-[var(--color-text-primary)] group-hover:text-[var(--color-accent-purple)] transition-colors mb-2">
-                  Welcome to my daily thoughts
-                </h3>
-                <p className="text-[var(--color-text-secondary)]">Latest update: 2026-02-27</p>
-              </div>
-              <span className="text-2xl text-[var(--color-accent-purple)] opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
-            </div>
-            <p className="text-[var(--color-text-secondary)] text-lg leading-relaxed">
-              A space for tracking daily progress, productivity automation insights, research findings, and learning reflections across neuroscience, engineering, and AI.
-            </p>
-          </a>
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <Link href="/blog" className="btn btn-secondary" style={{ borderColor: 'var(--accent-main)', color: 'var(--accent-main)' }}>
+              View All Posts
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="px-6 py-48 border-t border-[var(--color-bg-tertiary)]">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-block mb-6">
-            <span className="text-xs font-bold text-[var(--color-accent-cyan)] tracking-widest uppercase">Get In Touch</span>
-          </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-[var(--color-text-primary)]">Let's Talk</h2>
-          <p className="text-lg text-[var(--color-text-secondary)] mb-12 max-w-2xl mx-auto leading-relaxed">
-            Interested in collaboration, research, or just want to chat? Reach out via email or social media.
+      <section id="contact" style={{ padding: '6rem 1.5rem', borderTop: '1px solid var(--bg-tertiary)' }} className="text-center">
+        <div className="container" style={{ maxWidth: '600px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '2rem' }}>
+            Let's Talk
+          </h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.7, marginBottom: '2rem' }}>
+            Interested in collaborating or just want to connect? I'd love to hear from you.
           </p>
-          <a
-            href="mailto:jonas.s.brown@hotmail.com"
-            className="inline-block px-8 py-4 rounded-lg bg-[var(--color-accent-cyan)] text-[var(--color-bg-primary)] font-semibold hover:bg-[var(--color-accent-cyan-dark)] transition-all hover:shadow-lg hover:translate-y-[-2px]"
-          >
-            Send an Email
-          </a>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="mailto:jonas.s.brown@hotmail.com" className="btn btn-primary" style={{ backgroundColor: 'var(--accent-main)', color: 'var(--bg-primary)' }}>
+              Send an Email
+            </a>
+            <div>
+              <SocialLinks />
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="px-6 py-12 border-t border-[var(--color-bg-tertiary)] text-center">
-        <p className="text-[var(--color-text-secondary)] text-sm mb-2">Building with Next.js & Claude AI • {new Date().getFullYear()}</p>
-        <p className="text-xs text-[var(--color-text-tertiary)]">Computational neuroscience @ University of Washington</p>
+      <footer style={{ padding: '3rem 1.5rem', borderTop: '1px solid var(--bg-tertiary)', textAlign: 'center', color: 'var(--text-secondary)' }}>
+        <p style={{ fontSize: '0.875rem', marginBottom: '0.5rem' }}>
+          Built with Next.js & TypeScript • {new Date().getFullYear()}
+        </p>
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
+          Computational neuroscience @ University of Washington
+        </p>
       </footer>
     </div>
   )

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import ThemeToggle from '@/components/ThemeToggle'
 
 // TODO: Implement dynamic blog post loading from markdown files or CMS
 // This will be populated by the daily newsletter automation
@@ -116,57 +117,177 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
   if (!post) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen px-4">
-        <h1 className="text-4xl font-bold mb-4">Post not found</h1>
-        <Link href="/blog/" className="text-blue-600 hover:text-blue-700">
-          ← Back to blog
-        </Link>
+      <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem' }}>
+        <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '1rem' }}>
+            Post not found
+          </h1>
+          <Link href="/blog" style={{
+            color: 'var(--accent-main)',
+            textDecoration: 'none',
+            fontWeight: 500
+          }}>
+            ← Back to blog
+          </Link>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="flex flex-col items-center min-h-screen px-4 py-20">
-      <article className="max-w-2xl w-full">
-        <Link href="/blog/" className="text-blue-600 hover:text-blue-700 font-medium mb-8 inline-block">
-          ← Back to blog
-        </Link>
-
-        <header className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
-          <time className="text-gray-500">{post.date}</time>
-        </header>
-
-        <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed">
-          {post.content.split('\n').map((line, i) => {
-            if (line.startsWith('##')) {
-              return (
-                <h2 key={i} className="text-2xl font-bold mt-6 mb-4">
-                  {line.replace('## ', '')}
-                </h2>
-              )
-            }
-            if (line.startsWith('#')) {
-              return (
-                <h1 key={i} className="text-3xl font-bold mb-4">
-                  {line.replace('# ', '')}
-                </h1>
-              )
-            }
-            if (line === '---') {
-              return <hr key={i} className="my-8" />
-            }
-            if (line.trim()) {
-              return (
-                <p key={i} className="mb-4">
-                  {line}
-                </p>
-              )
-            }
-            return null
-          })}
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
+      {/* Navigation */}
+      <nav style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        borderBottom: '1px solid var(--bg-tertiary)',
+        backdropFilter: 'blur(10px)',
+      }}>
+        <style>{`
+          [data-theme="dark"] nav {
+            background-color: rgba(26, 20, 16, 0.95);
+          }
+          nav a:hover {
+            color: var(--accent-main);
+          }
+        `}</style>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 1.5rem' }}>
+          <Link href="/" style={{
+            fontWeight: 'bold',
+            fontSize: '1.25rem',
+            color: 'var(--text-primary)',
+            textDecoration: 'none',
+            transition: 'color 0.2s ease',
+          }}>
+            JB
+          </Link>
+          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+            <Link href="/" style={{
+              fontSize: '0.875rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+            }}>
+              Work
+            </Link>
+            <Link href="/blog" style={{
+              fontSize: '0.875rem',
+              color: 'var(--accent-main)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+              fontWeight: 500
+            }}>
+              Blog
+            </Link>
+            <Link href="/debt-tracker" style={{
+              fontSize: '0.875rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+            }}>
+              Debt Tracker
+            </Link>
+            <Link href="#contact" style={{
+              fontSize: '0.875rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+            }}>
+              Contact
+            </Link>
+            <div style={{ borderLeft: '1px solid var(--bg-tertiary)', height: '1.5rem', margin: '0 0.5rem' }} />
+            <ThemeToggle />
+          </div>
         </div>
-      </article>
+      </nav>
+
+      {/* Blog Post */}
+      <section style={{ padding: '6rem 1.5rem', borderTop: '1px solid var(--bg-tertiary)' }}>
+        <article className="container" style={{ maxWidth: '700px', margin: '0 auto' }}>
+          <Link href="/blog" style={{
+            color: 'var(--accent-main)',
+            textDecoration: 'none',
+            fontWeight: 500,
+            display: 'inline-block',
+            marginBottom: '2rem'
+          }}>
+            ← Back to blog
+          </Link>
+
+          <header style={{ marginBottom: '3rem' }}>
+            <h1 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '1rem' }}>
+              {post.title}
+            </h1>
+            <time style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>
+              {post.date}
+            </time>
+          </header>
+
+          <div style={{
+            color: 'var(--text-secondary)',
+            lineHeight: 1.8,
+            fontSize: '1rem'
+          }}>
+            {post.content.split('\n').map((line, i) => {
+              if (line.startsWith('##')) {
+                return (
+                  <h2 key={i} style={{
+                    fontSize: '1.5rem',
+                    fontWeight: 700,
+                    marginTop: '2rem',
+                    marginBottom: '1rem',
+                    color: 'var(--text-primary)'
+                  }}>
+                    {line.replace('## ', '')}
+                  </h2>
+                )
+              }
+              if (line.startsWith('#') && !line.startsWith('##')) {
+                return (
+                  <h1 key={i} style={{
+                    fontSize: '1.875rem',
+                    fontWeight: 700,
+                    marginBottom: '1rem',
+                    color: 'var(--text-primary)'
+                  }}>
+                    {line.replace('# ', '')}
+                  </h1>
+                )
+              }
+              if (line === '---') {
+                return <hr key={i} style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--bg-tertiary)' }} />
+              }
+              if (line.trim().startsWith('-')) {
+                return (
+                  <li key={i} style={{ marginLeft: '1.5rem', marginBottom: '0.5rem' }}>
+                    {line.replace('-', '').trim()}
+                  </li>
+                )
+              }
+              if (line.trim()) {
+                return (
+                  <p key={i} style={{ marginBottom: '1rem' }}>
+                    {line}
+                  </p>
+                )
+              }
+              return null
+            })}
+          </div>
+        </article>
+      </section>
+
+      {/* Footer */}
+      <footer style={{ padding: '3rem 1.5rem', borderTop: '1px solid var(--bg-tertiary)', textAlign: 'center', color: 'var(--text-secondary)' }}>
+        <p style={{ fontSize: '0.875rem', marginBottom: '0.5rem' }}>
+          Built with Next.js & TypeScript • {new Date().getFullYear()}
+        </p>
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
+          Computational neuroscience @ University of Washington
+        </p>
+      </footer>
     </div>
   )
 }

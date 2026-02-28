@@ -1,43 +1,94 @@
+'use client'
+
 import DebtTracker from '@/components/DebtTracker'
 import Link from 'next/link'
-
-export const metadata = {
-  title: 'Debt Payoff Tracker',
-  description: 'Track your study abroad debt payoff progress',
-}
-
 import ThemeToggle from '@/components/ThemeToggle'
 
 export default function DebtTrackerPage() {
   return (
-    <div className="min-h-screen bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-[var(--color-bg-primary)]/95 backdrop-blur-md border-b border-[var(--color-bg-tertiary)]">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="font-bold text-xl text-[var(--color-text-primary)] hover:text-[var(--color-accent-cyan)] transition-colors">
+      <nav style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        borderBottom: '1px solid var(--bg-tertiary)',
+        backdropFilter: 'blur(10px)',
+      }}>
+        <style>{`
+          [data-theme="dark"] nav {
+            background-color: rgba(26, 20, 16, 0.95);
+          }
+          nav a:hover {
+            color: var(--accent-main);
+          }
+        `}</style>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 1.5rem' }}>
+          <Link href="/" style={{
+            fontWeight: 'bold',
+            fontSize: '1.25rem',
+            color: 'var(--text-primary)',
+            textDecoration: 'none',
+            transition: 'color 0.2s ease',
+          }}>
             JB
           </Link>
-          <div className="flex gap-8 items-center">
-            <Link href="/" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors">Work</Link>
-            <Link href="/blog" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors">Blog</Link>
-            <Link href="#contact" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent-cyan)] transition-colors">Contact</Link>
-            <div className="border-l border-[var(--color-bg-tertiary)] h-6 mx-2" />
+          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+            <Link href="/" style={{
+              fontSize: '0.875rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+            }}>
+              Work
+            </Link>
+            <Link href="/blog" style={{
+              fontSize: '0.875rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+            }}>
+              Blog
+            </Link>
+            <Link href="/debt-tracker" style={{
+              fontSize: '0.875rem',
+              color: 'var(--accent-main)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+              fontWeight: 500,
+            }}>
+              Debt Tracker
+            </Link>
+            <Link href="#contact" style={{
+              fontSize: '0.875rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+            }}>
+              Contact
+            </Link>
+            <div style={{ borderLeft: '1px solid var(--bg-tertiary)', height: '1.5rem', margin: '0 0.5rem' }} />
             <ThemeToggle />
           </div>
         </div>
       </nav>
 
       {/* Content */}
-      <section className="px-6 py-32 flex justify-center">
-        <div className="w-full">
+      <section style={{ padding: '2rem 1.5rem' }}>
+        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
           <DebtTracker />
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="px-6 py-12 border-t border-[#1a2332]/40 text-center">
-        <p className="text-[#a0aab8] text-sm mb-2">Building with Next.js & Claude AI • {new Date().getFullYear()}</p>
-        <p className="text-xs text-[#a0aab8]/60">Computational neuroscience @ University of Washington</p>
+      <footer style={{ padding: '3rem 1.5rem', borderTop: '1px solid var(--bg-tertiary)', textAlign: 'center', color: 'var(--text-secondary)' }}>
+        <p style={{ fontSize: '0.875rem', marginBottom: '0.5rem' }}>
+          Built with Next.js & TypeScript • {new Date().getFullYear()}
+        </p>
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
+          Computational neuroscience @ University of Washington
+        </p>
       </footer>
     </div>
   )

@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import ThemeToggle from '@/components/ThemeToggle'
 
 interface BlogPost {
   slug: string
@@ -20,39 +23,142 @@ const blogPosts: BlogPost[] = [
 
 export default function BlogIndex() {
   return (
-    <div className="flex flex-col items-center min-h-screen px-4 py-20">
-      <div className="max-w-2xl w-full">
-        <h1 className="text-5xl font-bold mb-4">Daily Log</h1>
-        <p className="text-gray-600 mb-12">
-          Thoughts, progress, and reflections on research, projects, and learning.
-        </p>
-
-        {/* Blog Posts */}
-        <div className="space-y-6">
-          {blogPosts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}/`}
-              className="block p-6 rounded-lg bg-white bg-opacity-40 backdrop-blur-sm border border-gray-200 hover:bg-opacity-60 transition-all group"
-            >
-              <div className="flex justify-between items-start mb-2">
-                <h2 className="text-2xl font-semibold group-hover:text-blue-600 transition-colors">
-                  {post.title}
-                </h2>
-                <time className="text-gray-500 text-sm">{post.date}</time>
-              </div>
-              <p className="text-gray-600">{post.excerpt}</p>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
+      {/* Navigation */}
+      <nav style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        borderBottom: '1px solid var(--bg-tertiary)',
+        backdropFilter: 'blur(10px)',
+      }}>
+        <style>{`
+          [data-theme="dark"] nav {
+            background-color: rgba(26, 20, 16, 0.95);
+          }
+          nav a:hover {
+            color: var(--accent-main);
+          }
+        `}</style>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 1.5rem' }}>
+          <Link href="/" style={{
+            fontWeight: 'bold',
+            fontSize: '1.25rem',
+            color: 'var(--text-primary)',
+            textDecoration: 'none',
+            transition: 'color 0.2s ease',
+          }}>
+            JB
+          </Link>
+          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+            <Link href="/" style={{
+              fontSize: '0.875rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+            }}>
+              Work
             </Link>
-          ))}
-        </div>
-
-        {/* Empty State */}
-        {blogPosts.length === 0 && (
-          <div className="text-center py-20">
-            <p className="text-gray-500 text-lg">No posts yet. Check back soon.</p>
+            <Link href="/blog" style={{
+              fontSize: '0.875rem',
+              color: 'var(--accent-main)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+              fontWeight: 500
+            }}>
+              Blog
+            </Link>
+            <Link href="/debt-tracker" style={{
+              fontSize: '0.875rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+            }}>
+              Debt Tracker
+            </Link>
+            <Link href="#contact" style={{
+              fontSize: '0.875rem',
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+            }}>
+              Contact
+            </Link>
+            <div style={{ borderLeft: '1px solid var(--bg-tertiary)', height: '1.5rem', margin: '0 0.5rem' }} />
+            <ThemeToggle />
           </div>
-        )}
-      </div>
+        </div>
+      </nav>
+
+      {/* Blog Content */}
+      <section style={{ padding: '6rem 1.5rem', borderTop: '1px solid var(--bg-tertiary)' }}>
+        <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '1rem' }}>
+            Daily Log
+          </h1>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.7, marginBottom: '3rem' }}>
+            Thoughts, progress, and reflections on research, projects, and learning.
+          </p>
+
+          {/* Blog Posts */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            {blogPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}/`}
+                className="card"
+                style={{
+                  textDecoration: 'none',
+                  display: 'block',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '1rem' }}>
+                  <h2 style={{
+                    fontSize: '1.5rem',
+                    fontWeight: 600,
+                    color: 'var(--text-primary)',
+                    flex: 1
+                  }}>
+                    {post.title}
+                  </h2>
+                  <time style={{
+                    color: 'var(--text-tertiary)',
+                    fontSize: '0.875rem',
+                    marginLeft: '1rem',
+                    whiteSpace: 'nowrap'
+                  }}>
+                    {post.date}
+                  </time>
+                </div>
+                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+                  {post.excerpt}
+                </p>
+              </Link>
+            ))}
+          </div>
+
+          {/* Empty State */}
+          {blogPosts.length === 0 && (
+            <div style={{ textAlign: 'center', paddingTop: '5rem', paddingBottom: '5rem' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '1.125rem' }}>
+                No posts yet. Check back soon.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{ padding: '3rem 1.5rem', borderTop: '1px solid var(--bg-tertiary)', textAlign: 'center', color: 'var(--text-secondary)' }}>
+        <p style={{ fontSize: '0.875rem', marginBottom: '0.5rem' }}>
+          Built with Next.js & TypeScript • {new Date().getFullYear()}
+        </p>
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
+          Computational neuroscience @ University of Washington
+        </p>
+      </footer>
     </div>
   )
 }

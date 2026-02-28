@@ -39,18 +39,40 @@ export default function SocialLinks() {
   ]
 
   return (
-    <div className="flex gap-4 flex-wrap">
+    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
       {socials.map((social) => (
         <a
           key={social.name}
           href={social.url}
-          className="group relative px-4 py-3 rounded-lg border border-[#a0aab8]/20 text-[#a0aab8] hover:text-[#00d9ff] hover:border-[#00d9ff]/50 transition-all duration-300 inline-flex items-center gap-2 hover:bg-[#00d9ff]/5"
+          style={{
+            padding: '0.75rem 1rem',
+            borderRadius: '0.5rem',
+            border: '1px solid var(--bg-tertiary)',
+            color: 'var(--text-secondary)',
+            textDecoration: 'none',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = 'var(--accent-main)'
+            e.currentTarget.style.color = 'var(--accent-main)'
+            e.currentTarget.style.backgroundColor = 'var(--bg-tertiary)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'var(--bg-tertiary)'
+            e.currentTarget.style.color = 'var(--text-secondary)'
+            e.currentTarget.style.backgroundColor = 'transparent'
+          }}
           title={social.name}
         >
-          <span className="transition-transform group-hover:translate-y-[-2px]">
+          <span style={{ transition: 'transform 0.2s ease' }}>
             {social.icon}
           </span>
-          <span className="text-sm font-medium hidden sm:inline">{social.name}</span>
+          <span style={{ fontSize: '0.875rem', fontWeight: 500, display: 'none' }} className="sm:inline">
+            {social.name}
+          </span>
         </a>
       ))}
     </div>
