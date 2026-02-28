@@ -12,6 +12,73 @@ interface BlogPostData {
 
 // Sample blog post structure
 const blogPosts: Record<string, BlogPostData> = {
+  '2026-02-27': {
+    slug: '2026-02-27',
+    title: 'February 27, 2026 - Daily Progress Report',
+    date: '2026-02-27',
+    content: `
+# February 27, 2026 - Daily Progress Report
+
+## Calendar & Meetings
+
+- Polar plunge with Seattle Polar Plunge Club: 7:00 AM
+- Early study session: 6:30–8:30 AM
+- BIOC 406 lecture (Biochemistry): 11:30 AM–12:20 PM
+- BIOL 359 lecture (Quantitative Biology): 12:30–1:20 PM
+- Seattle Children's Hospital: Interview with Deanna Beauvais re: summer URS position (2:00–3:00 PM)
+- Pike Place Market (flowers for Cullen)
+- Jazz Alley performance with Cullen (free tickets from Aunt Kim)
+
+## Projects & Work
+
+**Research Interview - Seattle Children's**
+- Met with Ivan (data analysis lead) and explored summer URS opportunity
+- Strong interview performance — identified follow-up action items
+- Planning to reconnect with Ivan to discuss next steps
+- Reinforced commitment to research-driven career path
+
+**Academics**
+- Canvas feedback released on 5 assignments across BIOC 406 and BIOL 359
+- Reviewed instructor comments on quantitative biology problem sets (L11, L12, L13)
+- Completed BIOC 406 tRNA & tRNA Synthetases quiz
+
+**Professional & Personal**
+- Handshake message from Isabella Deeb (Kodely) — enrichment education company
+
+## Learning & Research
+
+- Reinforced biochemistry concepts from BIOC 406 lecture
+- Worked through quantitative analysis methods in BIOL 359
+- Gathered feedback on academic performance across multiple assignments
+- Explored research opportunities in pediatric health context
+- Discovered inspiration at Jazz Alley — rekindled vision for pursuing meaningful success to enable experiences with loved ones
+
+## Physical Activity
+
+- Participated in Seattle Polar Plunge Club: cold water immersion at 7:00 AM
+- Swim session with main set: 3x200 descending speed
+- Continued commitment to health and community involvement
+
+## Key Takeaways
+
+- **Research Momentum**: Strong interview at Seattle Children's — next step is follow-up with Ivan on data analysis side
+- **Relationship & Inspiration**: Jazz Alley experience clarified long-term vision: success enables shared meaningful moments with Cullen
+- **Health Discipline**: Maintained early-morning routine (polar plunge + study) + structured swim training
+- **Academic Feedback Loop**: Multiple assignments graded same day — staying on top of coursework
+- **Community**: Growing involvement with Seattle-based groups (polar plunge club, live music scene)
+
+## Tomorrow's Focus
+
+- Follow up with Ivan at Seattle Children's on summer URS details
+- Review assignment feedback and incorporate into upcoming work
+- Continue morning routine (study + training)
+- Prepare for next lectures in BIOC 406 and BIOL 359
+
+---
+
+*A day anchored by discipline (early swim, polar plunge), opportunity (research interview), and inspiration (jazz with Cullen). The distinction is becoming clear: success isn't just achievement—it's the freedom to share moments that matter.*
+    `,
+  },
   welcome: {
     slug: 'welcome',
     title: 'Welcome to my daily thoughts',
