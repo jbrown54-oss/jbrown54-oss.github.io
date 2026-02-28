@@ -41,61 +41,75 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0f1419] to-[#1a2332]">
-      {/* Navigation Spacer */}
-      <div className="h-12" />
-
-      {/* Hero Section */}
-      <section className="px-4 py-20 max-w-6xl mx-auto">
-        <div className="mb-20">
-          <div className="mb-6 flex items-center gap-2">
-            <div className="h-1 w-12 bg-gradient-to-r from-[#00d9ff] to-[#0ea5e9]" />
-            <span className="text-sm font-semibold text-[#00d9ff] tracking-widest uppercase">Neuroscientist & Engineer</span>
+      {/* Hero Section - Centered & Refined */}
+      <section className="px-4 pt-32 pb-24 md:pt-40 md:pb-32">
+        <div className="max-w-3xl mx-auto text-center">
+          {/* Accent Line */}
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <div className="h-px w-8 bg-gradient-to-r from-transparent to-[#00d9ff]" />
+            <span className="text-xs font-semibold text-[#00d9ff] tracking-widest uppercase">Neuroscientist & Engineer</span>
+            <div className="h-px w-8 bg-gradient-to-l from-transparent to-[#00d9ff]" />
           </div>
 
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 text-[#e0e8f0]">
+          {/* Main Title */}
+          <h1 className="text-7xl md:text-8xl font-bold mb-8 text-[#e0e8f0] leading-tight">
             Jonas Brown
           </h1>
 
-          <p className="text-2xl md:text-3xl font-light text-[#a0aab8] mb-6">
+          {/* Subtitle */}
+          <p className="text-2xl md:text-3xl font-light text-[#00d9ff] mb-8 leading-relaxed">
             Building bridges between wet lab and computation
           </p>
 
-          <p className="text-lg text-[#a0aab8] max-w-2xl leading-relaxed mb-8">
+          {/* Description */}
+          <p className="text-base md:text-lg text-[#a0aab8] max-w-2xl mx-auto leading-relaxed mb-12">
             Computational neuroscience student at UW. Combining experimental rigor with machine learning to understand brain dynamics, design better experiments, and accelerate discovery.
           </p>
 
+          {/* Social Links */}
           <SocialLinks />
+
+          {/* Scroll Indicator */}
+          <div className="mt-16 flex justify-center">
+            <div className="text-[#a0aab8] text-xs tracking-widest uppercase animate-pulse">
+              Scroll to explore
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section className="px-4 py-20 border-t border-[#24323f]">
+      <section className="px-4 py-32 border-t border-[#24323f]">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-[#e0e8f0]">Recent Work</h2>
+          <div className="mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold mb-4 text-[#e0e8f0]">Recent Work</h2>
+            <p className="text-lg text-[#a0aab8]">Computational and experimental projects bridging science and technology</p>
+          </div>
 
           {/* Computational Projects */}
-          <div className="mb-16">
-            <h3 className="text-xl font-semibold text-[#00d9ff] mb-8 flex items-center gap-2">
-              <span className="text-sm bg-[#00d9ff] text-[#0f1419] px-3 py-1 rounded font-mono">COMPUTATIONAL</span>
-              Software & Data
+          <div className="mb-24">
+            <h3 className="text-lg font-semibold text-[#00d9ff] mb-12 flex items-center gap-3">
+              <span className="text-xs bg-[#00d9ff] text-[#0f1419] px-4 py-2 rounded-full font-bold tracking-wider">COMPUTATIONAL</span>
+              <span className="text-[#a0aab8]">Software & Data Systems</span>
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {computationalProjects.map((project, idx) => (
                 <a
                   key={idx}
                   href={project.link}
-                  className="group p-6 rounded-lg bg-[#1a2332] border border-[#24323f] hover:border-[#00d9ff] hover:bg-[#24323f] transition-all duration-300"
+                  className="group relative p-8 rounded-xl bg-[#1a2332] border border-[#24323f] hover:border-[#00d9ff] hover:bg-[#24323f] transition-all duration-300 hover:shadow-lg hover:shadow-[#00d9ff]/10"
                 >
-                  <h4 className="text-lg font-semibold text-[#e0e8f0] mb-2 group-hover:text-[#00d9ff] transition-colors">
+                  <div className="absolute top-4 right-4 text-2xl opacity-0 group-hover:opacity-100 transition-opacity">→</div>
+                  <h4 className="text-xl font-bold text-[#e0e8f0] mb-3 group-hover:text-[#00d9ff] transition-colors pr-8">
                     {project.title}
                   </h4>
-                  <p className="text-[#a0aab8] mb-4 text-sm leading-relaxed">
+                  <p className="text-[#a0aab8] mb-6 text-sm leading-relaxed">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, i) => (
-                      <span key={i} className="text-xs px-2 py-1 rounded bg-[#0f1419] text-[#00d9ff] border border-[#00d9ff] border-opacity-30">
+                      <span key={i} className="text-xs px-3 py-1 rounded-full bg-[#0f1419] text-[#00d9ff] border border-[#00d9ff] border-opacity-30 font-medium">
                         {tag}
                       </span>
                     ))}
@@ -107,27 +121,28 @@ export default function Home() {
 
           {/* Wet Lab Projects */}
           <div>
-            <h3 className="text-xl font-semibold text-[#bef264] mb-8 flex items-center gap-2">
-              <span className="text-sm bg-[#bef264] text-[#0f1419] px-3 py-1 rounded font-mono">WET LAB</span>
-              Experimental & Research
+            <h3 className="text-lg font-semibold text-[#bef264] mb-12 flex items-center gap-3">
+              <span className="text-xs bg-[#bef264] text-[#0f1419] px-4 py-2 rounded-full font-bold tracking-wider">WET LAB</span>
+              <span className="text-[#a0aab8]">Experimental & Research</span>
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {wetLabProjects.map((project, idx) => (
                 <a
                   key={idx}
                   href={project.link}
-                  className="group p-6 rounded-lg bg-[#1a2332] border border-[#24323f] hover:border-[#bef264] hover:bg-[#24323f] transition-all duration-300"
+                  className="group relative p-8 rounded-xl bg-[#1a2332] border border-[#24323f] hover:border-[#bef264] hover:bg-[#24323f] transition-all duration-300 hover:shadow-lg hover:shadow-[#bef264]/10"
                 >
-                  <h4 className="text-lg font-semibold text-[#e0e8f0] mb-2 group-hover:text-[#bef264] transition-colors">
+                  <div className="absolute top-4 right-4 text-2xl opacity-0 group-hover:opacity-100 transition-opacity">→</div>
+                  <h4 className="text-xl font-bold text-[#e0e8f0] mb-3 group-hover:text-[#bef264] transition-colors pr-8">
                     {project.title}
                   </h4>
-                  <p className="text-[#a0aab8] mb-4 text-sm leading-relaxed">
+                  <p className="text-[#a0aab8] mb-6 text-sm leading-relaxed">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, i) => (
-                      <span key={i} className="text-xs px-2 py-1 rounded bg-[#0f1419] text-[#bef264] border border-[#bef264] border-opacity-30">
+                      <span key={i} className="text-xs px-3 py-1 rounded-full bg-[#0f1419] text-[#bef264] border border-[#bef264] border-opacity-30 font-medium">
                         {tag}
                       </span>
                     ))}
@@ -140,20 +155,23 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section className="px-4 py-20 border-t border-[#24323f]">
+      <section className="px-4 py-32 border-t border-[#24323f]">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-[#e0e8f0]">Tools & Skills</h2>
+          <div className="mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold mb-4 text-[#e0e8f0]">Tools & Skills</h2>
+            <p className="text-lg text-[#a0aab8]">Languages, frameworks, and tools I use daily</p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {tools.map((toolGroup, idx) => (
-              <div key={idx} className="p-6 rounded-lg bg-[#1a2332] border border-[#24323f]">
-                <h4 className="text-sm font-semibold text-[#00d9ff] uppercase tracking-wider mb-4">
+              <div key={idx} className="p-8 rounded-xl bg-[#1a2332] border border-[#24323f] hover:border-[#00d9ff]/50 transition-colors duration-300">
+                <h4 className="text-xs font-bold text-[#00d9ff] uppercase tracking-widest mb-6">
                   {toolGroup.category}
                 </h4>
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {toolGroup.items.map((item, i) => (
-                    <li key={i} className="text-[#a0aab8] text-sm">
-                      • {item}
+                    <li key={i} className="text-[#a0aab8] text-sm font-medium">
+                      {item}
                     </li>
                   ))}
                 </ul>
@@ -164,21 +182,25 @@ export default function Home() {
       </section>
 
       {/* Blog Section */}
-      <section className="px-4 py-20 border-t border-[#24323f]">
+      <section className="px-4 py-32 border-t border-[#24323f]">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="text-4xl font-bold text-[#e0e8f0]">Latest Thoughts</h2>
-            <Link href="/blog/" className="text-[#00d9ff] hover:text-[#bef264] transition-colors font-medium">
+          <div className="flex items-center justify-between mb-20">
+            <div>
+              <h2 className="text-5xl md:text-6xl font-bold mb-4 text-[#e0e8f0]">Latest Thoughts</h2>
+              <p className="text-lg text-[#a0aab8]">Writing about research, learning, and building</p>
+            </div>
+            <Link href="/blog/" className="text-[#00d9ff] hover:text-[#bef264] transition-colors font-medium whitespace-nowrap ml-4">
               View all →
             </Link>
           </div>
 
-          <div className="p-8 rounded-lg bg-[#1a2332] border border-[#24323f]">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-xl font-semibold text-[#e0e8f0]">Welcome to my daily thoughts</h3>
-              <span className="text-sm text-[#a0aab8]">2026-02-27</span>
+          <div className="group relative p-8 rounded-xl bg-[#1a2332] border border-[#24323f] hover:border-[#00d9ff] hover:bg-[#24323f] transition-all duration-300 hover:shadow-lg hover:shadow-[#00d9ff]/10">
+            <div className="absolute top-4 right-4 text-2xl opacity-0 group-hover:opacity-100 transition-opacity">→</div>
+            <div className="flex items-start justify-between mb-4 pr-8">
+              <h3 className="text-2xl font-bold text-[#e0e8f0] group-hover:text-[#00d9ff] transition-colors">Welcome to my daily thoughts</h3>
+              <span className="text-sm text-[#a0aab8] whitespace-nowrap ml-4">2026-02-27</span>
             </div>
-            <p className="text-[#a0aab8] mb-4">
+            <p className="text-[#a0aab8] mb-6 text-base leading-relaxed max-w-2xl">
               A space for tracking daily progress, productivity automation, research findings, and learning reflections.
             </p>
             <Link href="/blog/welcome" className="text-[#00d9ff] hover:text-[#bef264] transition-colors text-sm font-medium">
@@ -189,8 +211,9 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="px-4 py-12 border-t border-[#24323f] text-center text-[#a0aab8] text-sm">
-        <p>Building with Claude AI • {new Date().getFullYear()}</p>
+      <footer className="px-4 py-16 border-t border-[#24323f] text-center text-[#a0aab8] text-sm">
+        <p className="mb-2">Building with Claude AI • {new Date().getFullYear()}</p>
+        <p className="text-xs text-[#a0aab8]/60">Computational neuroscience @ UW</p>
       </footer>
     </div>
   )
